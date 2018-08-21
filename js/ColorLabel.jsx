@@ -7,7 +7,6 @@ function ColorLabel(props) {
   const onClick = event => {
     props.onClick(props.colorKey)
   }
-  //let color = palette.primary.main;
   const color = props.color
   const colorPreview = (
     <div className="color-label-preview">
@@ -35,7 +34,7 @@ function ColorLabel(props) {
         <div
           style={{
             background: color.dark,
-            color: getContrastText(color.dark),
+            color: color.contrastText.dark,
           }}
         >
           Dark

@@ -3,8 +3,8 @@ import { connect } from 'react-redux'
 import { getContrastRatio } from '@material-ui/core/styles/colorManipulator'
 import { assignColor, assignActiveColorId } from '../actions'
 import ColorLabel from '../ColorLabel'
+import ColorIdSelector from '../ColorIdSelector'
 import ColorPicker from '../ColorPicker'
-//import './ColorApp.scss'
 
 const mapStateToProps = (state, props) => ({
   palette: state.palette,
@@ -34,15 +34,12 @@ class ColorPreferences extends Component {
     })
   }
 
-  createColorLabel(id) {
+  createColorSelector() {
     return (
-      <ColorLabel
-        active={this.state.activeId === id}
-        color={this.props.palette[id]}
-        colorKey={id}
-        key={id}
+      <ColorIdSelector
+        activeId={this.state.activeId}
+        palette={this.props.palette}
         onClick={this.handleLabelClick}
-        children={id}
       />
     )
   }
@@ -51,10 +48,7 @@ class ColorPreferences extends Component {
     return (
       <div className="color-prefs-container">
         <div className="color-prefs-label-container">
-          {this.createColorLabel('primary')}
-          {this.createColorLabel('secondary')}
-          {this.createColorLabel('accent')}
-          {this.createColorLabel('error')}
+          {this.createColorSelector()}
         </div>
         <div className="color-prefs-picker-container">
           <ColorPicker onClick={this.handlePickerClick} />
