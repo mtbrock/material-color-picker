@@ -7,7 +7,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: {
-    app: './js/index.jsx',
+    app: './src/index.jsx',
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -35,12 +35,12 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@app': path.resolve(__dirname, 'js/'),
+      '@app': path.resolve(__dirname, 'src/'),
     },
     modules: [
       path.resolve(__dirname, 'node_modules'),
       path.resolve(__dirname),
-      path.resolve(__dirname, 'js'),
+      path.resolve(__dirname, 'src'),
     ],
     extensions: ['*', '.js', '.jsx'],
   }
