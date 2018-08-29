@@ -1,64 +1,45 @@
 import { Component, Fragment } from 'react'
-import { MuiThemeProvider, createMuiTheme, withStyles } from '@material-ui/core/styles'
-import { red, blue, blueGrey, green } from '@material-ui/core/colors'
-import * as muiColors from '@material-ui/core/colors'
-import Button from '@material-ui/core/Button'
-import TouchRipple from '@material-ui/core/ButtonBase'
-import Input from '@material-ui/core/Input'
-import Paper from '@material-ui/core/Paper'
-import Slider from '@material-ui/lab/Slider'
-import ColorLabel from './ColorLabel'
-import ColorPicker from './ColorPicker'
-import './App.scss'
+import { connect } from 'react-redux'
+import { getContrastRatio } from '@material-ui/core/styles/colorManipulator'
+import { assignColor, assignActiveColorId } from '../actions'
+import ColorLabel from '../ColorLabel'
+import ColorIdSelector from '../ColorIdSelector'
+import ColorPicker from '../ColorPicker'
+
+const mapStateToProps = (state, props) => ({
+  palette: state.palette,
+})
+
+const mapDispatchToProps = (dispatch, props) => ({
+  dispatch,
+})
 
 class ColorPreferences extends Component {
   constructor(props) {
     super(props)
     this.state = {
       activeId: 'primary',
-      primary: this.paletteForColor(blue[300]),
-      secondary: this.paletteForColor(green[300]),
-      accent: this.paletteForColor(blueGrey[500]),
-      error: this.paletteForColor(red[500]),
-      palette: this.paletteForColor(red[500]),
     }
-    this.onColorClick = this.onColorClick.bind(this)
-    this.onLabelClick = this.onLabelClick.bind(this)
+    this.handleLabelClick = this.handleLabelClick.bind(this)
+    this.handlePickerClick = this.handlePickerClick.bind(this)
   }
 
-  onLabelClick(event, id) {
+  handlePickerClick(color) {
+    this.props.dispatch(assignColor(this.state.activeId, color))
+  }
+
+  handleLabelClick(id) {
     this.setState({
       activeId: id,
     })
   }
 
-  paletteForColor(color) {
-    const theme = createMuiTheme({
-      palette: {
-        primary: { main: color },
-      }
-    })
-    return theme.palette
-  }
-
-  onColorClick(event, color) {
-    const palette = this.paletteForColor(color)
-    this.props.onColorChange([this.state.activeId], palette.primary.main)
-    this.setState((prevState, props) => ({
-      [prevState.activeId]: palette,
-    }))
-  }
-
-  createColorLabel(id) {
+  createColorSelector() {
     return (
-      <ColorLabel
-        active={this.state.activeId === id}
-        palette={this.state.palette}
-        color={this.state[id].primary.main}
-        colorKey={id}
-        key={id}
-        onClick={this.onLabelClick}
-        children={id}
+      <ColorIdSelector
+        activeId={this.state.activeId}
+        palette={this.props.palette}
+        onClick={this.handleLabelClick}
       />
     )
   }
@@ -67,17 +48,17 @@ class ColorPreferences extends Component {
     return (
       <div className="color-prefs-container">
         <div className="color-prefs-label-container">
-          {this.createColorLabel('primary')}
-          {this.createColorLabel('secondary')}
-          {this.createColorLabel('accent')}
-          {this.createColorLabel('error')}
+          {this.createColorSelector()}
         </div>
         <div className="color-prefs-picker-container">
-          <ColorPicker onClick={this.onColorClick} />
+          <ColorPicker onClick={this.handlePickerClick} />
         </div>
       </div>
     )
   }
 }
 
-export default ColorPreferences
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ColorPreferences)

@@ -1,6 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 import { red, blue, blueGrey, green } from '@material-ui/core/colors'
-import { createColor } from '../colorUtils'
+import { createColor } from '@app/utils/colorUtils'
 
 function createInitialState() {
   return {

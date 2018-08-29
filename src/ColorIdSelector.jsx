@@ -1,9 +1,6 @@
-import { Component, Fragment } from 'react'
-import Paper from '@material-ui/core/Paper'
-import TouchRipple from '@material-ui/core/ButtonBase'
-import { red } from '@material-ui/core/colors'
+import '@app/styles/ColorIdSelector.scss'
 
-function ColorIdSelector(props) {
+function createColorIdButtons(props) {
   const { palette } = props;
   return Object.entries(palette).map((entry, index) => {
     const colorId = entry[0]
@@ -12,20 +9,19 @@ function ColorIdSelector(props) {
       props.onClick(`${colorId}`)
     }
     const colorPreview = (
-      <div className="color-label-preview">
+      <div className="color-id-button-preview">
         <div
-          className="color-label-preview-top"
+          className="color-id-button-preview-top"
           style={{
             background: color.main,
             color: color.contrastText.main,
-            textAlign: 'center',
           }}
         >
           <p>
             {colorId}
           </p>
         </div>
-        <div className="color-label-preview-bottom">
+        <div className="color-id-button-preview-bottom">
           <div
             style={{
               background: color.light,
@@ -45,8 +41,8 @@ function ColorIdSelector(props) {
         </div>
       </div>
     )
-    let containerClass = 'color-label-container'
-    let textClass = 'color-label-text'
+    let containerClass = 'color-id-button-container'
+    let textClass = 'color-id-button-text'
     if (props.activeId === colorId) {
       containerClass += ' activated'
       textClass += ' activated'
@@ -58,6 +54,14 @@ function ColorIdSelector(props) {
       </div>
     )
   })
+}
+
+function ColorIdSelector(props) {
+  return (
+    <div className="color-id-selector-container">
+      {createColorIdButtons(props)}
+    </div>
+  )
 }
 
 export default ColorIdSelector

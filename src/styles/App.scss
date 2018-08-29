@@ -1,0 +1,87 @@
+@import 'mixins';
+@import '~sass-material-colors';
+
+$border-color: material-color('grey', '500');
+
+html {
+  font-family: Roboto, Helvetica, sans-serif;
+  background: material-color('grey', '200');
+}
+
+pre {
+  background: material-color('grey', '300');
+  margin: 1em;
+  padding: 1em;
+  min-width: 30em;
+}
+
+.code-preview-container {
+  border-style: solid;
+  border-color: $border-color;
+  border-width: 1px 1px 1px 0;
+}
+
+code {
+  line-height: 150%;
+}
+
+.demo-container {
+  width: 30em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  &>* {
+    margin: .5em !important;
+  }
+
+  input {
+    flex: 1 1 100%;
+  }
+}
+
+.palette-btn {
+}
+
+.tr {
+  @include size(10em);
+  background: blue;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.column-one {
+}
+
+.column-two {
+  display: flex;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+p:first-letter {
+  text-transform:capitalize;
+}
+
+.palette-container {
+  background: white;
+  padding: .5em;
+}
+
+@mixin button-background() {
+  transition: background-color .2s ease;
+
+  &:active {
+    background: rgba(material-color('grey', '900'), .1);
+    transition: unset;
+  }
+}

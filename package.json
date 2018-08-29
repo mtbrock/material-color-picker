@@ -46,12 +46,11 @@
     "sass-loader": "^7.1.0",
     "style-loader": "^0.22.1",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.5"
+    "webpack-dev-server": "^3.1.5",
+    "webpack-merge": "^4.1.4"
   },
   "scripts": {
-    "build": "webpack --env.NODE_ENV=production --env.prod",
-    "build:min": "webpack --env.NODE_ENV=production --env.prod --env.min",
-    "start": "webpack-dev-server --open --env.NODE_ENV=local --env.dev",
-    "watch": "webpack --env.NODE_ENV=local --env.dev --env.watch"
+    "build": "webpack --config webpack.prod.js",
+    "start": "webpack-dev-server --open --config webpack.dev.js"
   }
 }
