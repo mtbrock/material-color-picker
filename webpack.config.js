@@ -84,6 +84,9 @@ module.exports = env => {
       ]
     },
     resolve: {
+      alias: {
+        '@app': path.resolve(__dirname, 'src/'),
+      },
       modules: [
         path.resolve(__dirname, 'node_modules'),
         path.resolve(__dirname),
