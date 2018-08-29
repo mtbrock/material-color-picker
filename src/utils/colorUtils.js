@@ -79,7 +79,7 @@ export function rgbToHex(color) {
     hexString = hexString.substring(0, 3)
   }
   if (color.startsWith('rgba')) {
-    return `rgba(${hexString}, ${values[3]})`
+    return `rgba(#${hexString}, ${values[3]})`
   }
   return `#${hexString}`;
 }
