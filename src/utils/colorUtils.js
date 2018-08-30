@@ -12,7 +12,6 @@ const lightText = 'rgba(0, 0, 0, 0.87)'
 const darkText = 'rgb(255, 255, 255)'
 
 export function getContrastText(background) {
-  console.log(background)
   if (getContrastRatio(background, darkText) >= 3) {
     return darkText
   }
@@ -68,7 +67,7 @@ export function rgbToHex(color) {
   let lastValue = values[0]
   let hexValues = values.map((n, index) => {
     if (index < 3) {
-      allSame = n === lastValue
+      allSame = n == lastValue && allSame
       lastValue = n
       return intToHex(n);
     }
