@@ -1,15 +1,9 @@
-import { createMuiTheme } from '@material-ui/core/styles'
-import { red, blue, blueGrey, green } from '@material-ui/core/colors'
-import { createColor } from '@app/utils/colorUtils'
+import {createColorGroup, createPalette} from '@app/color'
 
 function createInitialState() {
+  const palette = createPalette()
   return {
-    palette: {
-      primary: createColor(blue[600]),
-      secondary: createColor(blueGrey[600]),
-      accent: createColor(blue[300]),
-      error: createColor(red[600]),
-    }
+    palette: createPalette()
   }
 }
 
@@ -22,7 +16,7 @@ export default function colorApp(state = initialState, action) {
         ...state,
         palette: {
           ...state.palette,
-          [action.id]: createColor(action.color),
+          [action.id]: createColorGroup(action.color),
         },
       }
     case 'ASSIGN_ACTIVE_COLOR_ID':

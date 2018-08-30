@@ -3,6 +3,7 @@ import { Component, Fragment } from 'react'
 import ColorIdSelector from '@app/ColorIdSelector'
 import SwatchPicker from '@app/SwatchPicker'
 import CodePreview from '@app/CodePreview'
+import {formatPalette} from '@app/color'
 
 
 class ColorApp extends Component {
@@ -26,6 +27,7 @@ class ColorApp extends Component {
   }
 
   render() {
+    const code = formatPalette(this.props.palette)
     return (
       <Fragment>
         <ColorIdSelector
@@ -34,7 +36,7 @@ class ColorApp extends Component {
           onClick={this.handleIdClick}
         />
         <SwatchPicker onClick={this.handlePickerClick} />
-        <CodePreview palette={this.props.palette} />
+        <CodePreview code={code} />
       </Fragment>
     )
   }
