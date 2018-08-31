@@ -1,14 +1,23 @@
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
 import { render } from 'react-dom'
 import 'typeface-roboto'
 
-import App from '@app/App'
+import reducer from '@app/reducers'
+import AppContainer from '@app/AppContainer'
 
+// Create Redux store.
+const store = createStore(reducer)
 
+// Create root div.
 const root = document.createElement('div', { id: 'root' });
 document.body.appendChild(root);
+
 const load = () => render(
   (
-    <App />
+    <Provider store={store}>
+      <AppContainer />
+    </Provider>
   ),
   root,
 );
