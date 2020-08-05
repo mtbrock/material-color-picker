@@ -1,5 +1,5 @@
 # Material color picker
-A simple material color picker, similar to the [material.io Color Tool](https://material.io/tools/color/).
+A React.js color palette picker with Material swatches, similar to the [material.io Color Tool](https://material.io/tools/color/).
 
 Outputs color palette to SCSS variables.
 
