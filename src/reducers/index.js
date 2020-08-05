@@ -1,4 +1,4 @@
-import {createColorGroup, createPalette} from '@app/color'
+import { createColorGroup, createPalette } from '@app/color'
 
 function createInitialState() {
   const palette = createPalette()

@@ -37,12 +37,14 @@ class ColorPicker extends Component {
       props.onClick(color)
     }
     return (
-      <div
-        key={key}
-        style={{ backgroundColor: color }}
-        className="swatch-picker-button"
-        onClick={onClick}
-      >
+      <div className="color-button-container">
+          <div
+            key={key}
+            style={{ backgroundColor: color }}
+            className="swatch-picker-button"
+            onClick={onClick}
+          >
+          </div>
       </div>
     )
   }

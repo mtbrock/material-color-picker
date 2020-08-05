@@ -3,6 +3,10 @@
 
 $border-color: material-color('grey', '500');
 
+* {
+  box-sizing: border-box;
+}
+
 .swatch-picker-container {
   border-style: solid;
   border-color: $border-color;
@@ -10,20 +14,29 @@ $border-color: material-color('grey', '500');
   padding: .5em;
 }
 
-.swatch-picker-button {
+.color-button-container {
   @include size(2em);
   margin-right: 1px;
   padding: 0;
-  position: relative;
-  transition: border-radius 0.3s ease;
 
   &:last-child {
     margin: 0;
   }
+}
+
+.swatch-picker-button {
+  @include size(2em);
+  padding: 0;
+  position: absolute;
+  transform: translate(0em, 0em);
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  transition-property: all;
 
   &:hover {
     border-radius: 1em;
-    transition: border-radius 0.1s ease;
+    transition-duration: 0.1s;
+    z-index: 1;
   }
 
   &::after {
